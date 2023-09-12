@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+</head>
+<body>
+	<section>
+		<h1>Welcome [[${username}]]</h1>
+		<button onclick="window.location.href='addNotes';return false;">Add
+			Note</button>
+
+		<div th:if="${notes.isEmpty()}">
+			<h2>Create Notes</h2>
+		</div>
+		<div th:each="note:${notes}">
+			<h3>Title</h3>
+			<h3 th:text="${note.title}"></h3>
+			<h4>Created On</h4>
+			<h4 th:text="${#dates.format(note.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></h4>
+			<div th:if="${note.updatedAt !=null}">
+				<h4>Updated On</h4>
+				<h4 th:text="${#dates.format(note.updatedAt, 'yyyy-MM-dd HH:mm:ss')}"></h4>
+			</div>
+			<h4>Content</h4>
+			<p th:text="${note.content}"></p>
+			<a th:href="@{/updateNote(id=${note.noteId})}">
+				<button onclick="if(!(confirm('Do you want to Update?')))return false">Update</button>
+			</a> 
+			<a th:href="@{/deleteNote(id=${note.noteId})}">
+				<button onclick="if(!(confirm('Do you want to delete?')))return false">Delete</button>
+			</a>
+		</div>
+
+	</section>
+</body>
+</html>

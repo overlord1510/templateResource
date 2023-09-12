@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+</head>
+<body>
+	<section>
+		<h1>Add Note</h1>
+		<form th:action="@{/process-note}" method="post">
+			<div>
+				<label for="title">Enter the title</label> <input type="text"
+					th:name="title">
+			</div>
+			<div>
+				<label for="content">Enter the Context</label> <input type="text"
+					th:name="content">
+			</div>
+			<div>
+				<input type="submit" value="Submit">
+			</div>
+		</form>
+		<div>
+			<button onclick="window.location.href='profile';return false;">Back</button>
+		</div>
+	</section>
+</body>
+</html>

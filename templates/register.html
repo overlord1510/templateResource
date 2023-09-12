@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home page</title>
+</head>
+<body>
+	<section>
+	<div>
+		<th:block th:if="${session.success}">[[${session.success}]]</th:block>
+		<th:block th:if="${session.fail}">[[${session.fail}]]</th:block>
+		<th:block th:if="${session.duplicate}">[[${session.duplicate}]]</th:block>
+		<th:block th:text="${@userServiceImpl.removeSessionMessage()}"></th:block>
+	</div>
+		<form th:action="@{/process-user}" method="post" >
+		<div>
+			 <label for="name">Name :: </label> 
+			 <input type="text" th:name="name" required>
+		</div>
+		<div>
+			 <label for="email">Email ID :: </label> 
+			 <input type="email" th:name="email" required> 
+		</div>
+		<div>
+			 <label for="email">Password :: </label> 
+			 <input type="password" th:name="passwordHash" required>
+		</div>
+		<div>
+			 <input type="submit" value="Submit">
+		</div>			 
+		</form>
+	</section>
+</body>
+</html>
