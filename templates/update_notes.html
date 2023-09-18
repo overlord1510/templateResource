@@ -9,15 +9,17 @@
 	<section>
 		<h1>Update Note</h1>
 		<form th:action="@{/update-note}" method="post" th:object="${snote}">
-		<input style="display: none" th:field="*{noteId}">
-		<input style="display: none" th:field="*{createdAt}" th:value="${#dates.format(snote.createdAt, 'yyyy-MM-dd HH:mm:ss')}">
+			<input style="display: none" th:field="*{noteId}"> <input
+				style="display: none" th:field="*{createdAt}"
+				th:value="${#dates.format(snote.createdAt, 'yyyy-MM-dd HH:mm:ss')}">
 			<div>
 				<label for="title">Enter the title</label> <input type="text"
 					th:field="*{title}">
 			</div>
 			<div>
-				<label for="content">Enter the Context</label> <input type="text"
-					th:field="*{content}">
+				<label for="content">Enter the Content</label>
+				<br>
+				<textarea th:field="*{content}" rows="4" cols="50"></textarea>
 			</div>
 			<div>
 				<input type="submit" value="Submit">
